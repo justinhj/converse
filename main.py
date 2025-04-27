@@ -9,6 +9,8 @@ import json
 #   mcp-server-git \
 #   --repository ~/projects/zigpath
 
+# TODO rather than hard code this use the same sort of json 
+# config that the Anthropic tools use.
 # Create server parameters for stdio connection
 server_params = StdioServerParameters(
     command="uvx",  # Executable
@@ -62,8 +64,8 @@ async def run():
             # content, mime_type = await session.read_resource("file://some/path")
 
             # Call a tool
-            # result = await session.call_tool("tool-name", arguments={"arg1": "value"})
-
+            result = await session.call_tool("git_status", arguments={"repo_path": "/Users/justinhj/projects/converse"})
+            print(f"Tool result - {result}")
 
 if __name__ == "__main__":
     import asyncio
